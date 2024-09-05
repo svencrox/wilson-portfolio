@@ -13,9 +13,13 @@ type PostProps = {
 export default function Post({ postData }: PostProps) {
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-4">{postData.title}</h1>
+      <h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
       <p className="text-gray-500 mb-6">{postData.date}</p>
-      <div className="prose prose-lg" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      {/* Apply prose class here */}
+      <article className="prose lg:prose-lg dark:prose-invert">
+        {/* Render content with dangerouslySetInnerHTML */}
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </article>
     </div>
   );
 }
@@ -26,13 +30,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const paths = fileNames.map((fileName) => ({
     params: {
-      slug: fileName.replace(/\.md$/, ''),
+      slug: fileName.replace(/\.md$/, ''), // remove the .md extention
     },
   }));
 
   return {
     paths,
-    fallback: false,
+    fallback: false, // All paths are pre-rendered; `false` means other routes should 404.
   };
 };
 
@@ -52,8 +56,9 @@ export const getStaticProps: GetStaticProps<PostProps> = async ({ params }) => {
   // Combine the data with the id (slug) and contentHtml
   const postData: PostData & { contentHtml: string } = {
     id: slug, // Include 'id' which corresponds to the 'slug'
-    contentHtml,
-    ...(matterResult.data as Omit<PostData, 'id'>), // Cast to the correct type
+    contentHtml: contentHtml,
+    title: matterResult.data.title,
+    date: matterResult.data.date, // Cast to the correct type
   };
 
   return {

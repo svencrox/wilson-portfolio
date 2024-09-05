@@ -1,36 +1,34 @@
-import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import { getSortedPostsData, PostData } from '../../lib/posts';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
-export default function Blog({ allPostsData }: { allPostsData: PostData[] }) {
+type BlogProps = {
+  allPostsData: PostData[];
+};
+
+export default function Blog({ allPostsData }: BlogProps) {
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-6">Blog</h1>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {allPostsData.map(({ id, date, title }) => (
-          <Card key={id} className="hover:shadow-lg transition-shadow duration-200">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold">{title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">{date}</p>
-              <Link href={`/blog/${id}`} passHref>
-                <Button variant="link" className="mt-4">Read more</Button>
-              </Link>
-            </CardContent>
-          </Card>
+    <div className="max-w-3xl mx-auto py-8 px-4">
+      <h1 className="text-3xl font-bold mb-4">Blog</h1>
+      <ul>
+        {allPostsData.map(({ id, title, date }) => (
+          <li key={id}>
+            <a href={`/blog/${id}`} className="text-blue-500 hover:underline">
+              {title}
+            </a>
+            <p className="text-gray-500">{date}</p>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+export const getStaticProps: GetStaticProps<BlogProps> = async () => {
+  const allPostsData = await getSortedPostsData(); // Ensure it is awaited and resolved
+
   return {
     props: {
-      allPostsData,
+      allPostsData, // Only return fully resolved data
     },
   };
-}
+};
