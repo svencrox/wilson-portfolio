@@ -1,3 +1,4 @@
+import { icons } from "lucide-react";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -48,13 +49,6 @@ const config: Config = {
 				border: "#233554", // Border color for containers and elements
 				input: "#233554", // Input field background color
 				ring: "#64ffda", // Focus ring color
-				chart: {
-					"1": "#ff6b6b", // Chart colors, adjust as needed
-					"2": "#64ffda",
-					"3": "#8892b0",
-					"4": "#ccd6f6",
-					"5": "#112240",
-				},
 			},
 			fontFamily: {
 				sans: ["Calibre", "Inter", "San Francisco", "SF Pro Text", "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],

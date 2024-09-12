@@ -15,7 +15,6 @@ export default function Post({ postData }: PostProps) {
 		<div className="max-w-3xl mx-auto py-8 px-4">
 			<h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
 			<p className="text-gray-500 mb-6">{postData.date}</p>
-			{/* Apply prose class here */}
 			<article className="prose lg:prose-lg dark:prose-invert">
 				{/* Render content with dangerouslySetInnerHTML */}
 				<div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
@@ -30,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 	const paths = fileNames.map((fileName) => ({
 		params: {
-			slug: fileName.replace(/\.md$/, ""), // remove the .md extention
+			slug: fileName.replace(/\.md$/, ""), // remove the .md extension
 		},
 	}));
 

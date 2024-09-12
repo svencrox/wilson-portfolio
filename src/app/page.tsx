@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
+import Image from "next/image";
+import { Github, Linkedin } from "lucide-react";
 
 // Define the PostData type for TypeScript
 type PostData = {
@@ -43,38 +45,42 @@ export default async function Home() {
 	const recentPosts = await getRecentPosts();
 
 	return (
-		<main className="flex min-h-screen">
-			{/* Left Column - Fixed */}
-			<div className="w-1/3 sticky top-0 flex flex-col justify-start min-h-screen px-4 py-16">
+		<main className="flex flex-col lg:flex-row min-h-screen">
+			{/* Left Column - Fixed on Desktop, Stacked on Mobile/Tablet */}
+			<div className="w-full lg:w-1/3 lg:sticky lg:top-0 flex flex-col justify-start min-h-screen px-4 py-16">
 				{/* Hero Section */}
 				<section className="text-center mb-16">
 					<h1 className="text-3xl font-bold mb-4">Wilson Ting</h1>
-					<p className="text-xl mb-8">Software Developer</p>
+					<p className="text-xl mb-8">Frontend Developer</p>
 				</section>
 
 				{/* About Section */}
-				<section id="about" className="max-w-xs mb-16 text-center">
+				<section id="about" className="mb-16 text-center">
 					<p className="text-lg">
-						I am a passionate developer with a focus on creating interactive and scalable web applications using the latest technologies.
-						With expertise in JavaScript, React, Next.js, and more, I love crafting intuitive and user-friendly experiences.
+						I am a skilled Front End Developer with extensive experience in creating and deploying web applications using Angular 15+,
+						ReactJS, Nextjs, HTML, and CSS. Proven track record in integrating REST APIs and developing responsive Single Page
+						Applications for clients in banking, e-commerce, and finance. Adept at using Agile methodologies and tools like JIRA, Git, and
+						Bitbucket to efficiently manage projects. Committed to staying updated with the latest web development trends to deliver
+						innovative solutions
 					</p>
 				</section>
 
 				{/* Contact Section */}
-				<section id="contact" className="max-w-xs mb-16 text-center">
+				<section id="contact" className="mb-16 text-center">
 					<h2 className="text-2xl font-bold mb-4">Links</h2>
-					<Button asChild>
-						<Link href="#">Get In Touch</Link>
-					</Button>
+					<div className="flex gap-2 justify-center">
+						<Linkedin color="#64ffda" />
+						<Github color="#64ffda" />
+					</div>
 				</section>
 			</div>
 
 			{/* Right Column - Scrollable */}
-			<div className="w-2/3 overflow-y-auto px-4 py-16">
+			<div className="w-full lg:w-2/3 overflow-y-auto px-4 py-16">
 				{/* Projects Section */}
 				<section id="projects" className="text-center w-full max-w-5xl mb-16">
 					<h2 className="text-2xl font-bold mb-8 text-center">Projects</h2>
-					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					<div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 						{/* Example Project Cards */}
 						<Card className="shadow-lg">
 							<CardHeader>
@@ -108,7 +114,7 @@ export default async function Home() {
 				{/* Blog Section */}
 				<section id="blog" className="w-full max-w-5xl mb-16">
 					<h2 className="text-2xl font-bold mb-8 text-center">Recent Blog Posts</h2>
-					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					<div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 						{recentPosts.map(({ id, title, date }) => (
 							<Card key={id} className="shadow-lg">
 								<CardHeader>
