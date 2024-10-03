@@ -69,8 +69,12 @@ export default async function Home() {
 				<section id="contact" className="mb-16 text-center">
 					<h2 className="text-2xl font-bold mb-4">Links</h2>
 					<div className="flex gap-2 justify-center">
-						<Linkedin color="#64ffda" />
-						<Github color="#64ffda" />
+						<a href="https://www.linkedin.com/in/wilson-chun-heng-ting/" target="_blank">
+							<Linkedin color="#64ffda" />
+						</a>
+						<a href="https://github.com/svencrox" target="_blank">
+							<Github color="#64ffda" href="https://github.com/svencrox" target="_blank" />
+						</a>
 					</div>
 				</section>
 			</div>
@@ -84,12 +88,14 @@ export default async function Home() {
 						{/* Example Project Cards */}
 						<Card className="shadow-lg">
 							<CardHeader>
-								<CardTitle>Project One</CardTitle>
-								<CardDescription>A brief description of Project One.</CardDescription>
+								<CardTitle className="mb-2">SoundMeter FYP</CardTitle>
+								<CardDescription>
+									Python coded with weightage to convert raw sound pressure to sound decibel for meaningful usage.
+								</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<Button variant="link" asChild>
-									<Link className="pl-0" href="#">
+									<Link className="pl-0" href="https://github.com/svencrox/soundmeterFYPA" target="_blank">
 										View Project
 									</Link>
 								</Button>
@@ -97,12 +103,30 @@ export default async function Home() {
 						</Card>
 						<Card className="shadow-lg">
 							<CardHeader>
-								<CardTitle>Project Two</CardTitle>
-								<CardDescription>A brief description of Project Two.</CardDescription>
+								<CardTitle className="mb-2">Iron Temple</CardTitle>
+								<CardDescription>
+									An app to record and custom make training programs to make training together easier.
+								</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<Button variant="link" asChild>
-									<Link className="pl-0" href="#">
+									<Link className="pl-0" href="https://github.com/svencrox/IronTemple" target="_blank">
+										View Project
+									</Link>
+								</Button>
+							</CardContent>
+						</Card>
+						<Card className="shadow-lg">
+							<CardHeader>
+								<CardTitle className="mb-2">WeatherApp React</CardTitle>
+								<CardDescription>
+									Light and easy react app using openWeatherAPI to demonstrate the usage of API data integration using create react
+									app.
+								</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<Button variant="link" asChild>
+									<Link className="pl-0" href="https://github.com/svencrox/weather-app-react" target="_blank">
 										View Project
 									</Link>
 								</Button>
